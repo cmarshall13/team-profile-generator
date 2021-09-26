@@ -8,3 +8,15 @@ test('creates a new Employee object', () => {
     expect(employee.id).toBe(28);
     expect(employee.email).toBe('corinnelynette@yahoo.com');
 });
+
+test(`getName() returns a string`, () => {
+    const employee = new Employee('Corinne', 28, 'corinnelynette@yahoo.com');
+
+    expect(employee.getName()).toEqual(expect.any(String));
+});
+
+test(`getId() returns id value`, () => {
+    const employee = new Employee('Corinne', 28, 'corinnelynette@yahoo.com');
+
+    expect(employee.getId()).toBe(employee.id);
+});
