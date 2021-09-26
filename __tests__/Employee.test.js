@@ -20,3 +20,15 @@ test(`getId() returns id value`, () => {
 
     expect(employee.getId()).toBe(employee.id);
 });
+
+test(`getEmail() returns the email value`, () => {
+    const employee = new Employee('Corinne', 28, 'corinnelynette@yahoo.com');
+
+    expect(employee.getEmail()).toBe(employee.email);
+});
+
+test(`getRole() returns Employee`, () => {
+    const employee = new Employee('Corinne', 28, 'corinnelynette@yahoo.com');
+
+    expect(employee.getRole()).toBe('Employee');
+});
