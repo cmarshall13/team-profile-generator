@@ -64,4 +64,32 @@ init = async () => {
                 }
             },
         ]);
-}
+    const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+    teamMembers.push(manager);
+    addMemberOrBuildTeam();
+};
+
+module.exports =
+    addMemberOrBuildTeam = async () => {
+        const userChoice = await inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'addOrBuild',
+                    message: 'Would you like to add a new Team Member or finish building your team?',
+                    choices: ['Add an engineer', 'Add an intern', 'Finish building my team']
+                },
+            ]);
+        switch (userChoice.addOrBuild) {
+            case 'Add an engineer':
+                engineerPrompts();
+                break;
+            case 'Add an intern':
+                internPrompts();
+                break;
+            case 'Finish building my team':
+                buildTeam(teamMembers);
+                console.log(`Great job! You've finished building your team. Check your /dist directory's index.html file to see your team page in action.`);
+                break;
+        };
+    };
