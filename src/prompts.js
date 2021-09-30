@@ -40,7 +40,28 @@ init = async () => {
                 }
             },
             {
-                
-            }
-        ])
+                type: 'input',
+                name: 'email',
+                message: ({name}) => (`What is ${name}'s email address?'`),
+                validate: emailInput => {
+                    if (!validator.is_email_valid(emailInput)) {
+                        console.log(`Please enter a valid email address! `);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'officeNumber',
+                message: `What is the manager's office number?`,
+                validate: officeNumberInput => {
+                    if (!officeNumberInput) {
+                        console.log(`Please enter a valid number.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+        ]);
 }
