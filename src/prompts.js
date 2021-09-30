@@ -93,3 +93,50 @@ module.exports =
                 break;
         };
     };
+
+engineerPrompts = async () => {
+    console.log(`ADD AN ENGINEER`)
+
+    const answers = await inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: `What is the engineer's name?`,
+                validate: nameInput => {
+                    if (!nameInput) {
+                        console.log(`Please enter a name for the engineer!`);
+                        return false;
+                    }
+                    return true;
+                }
+            }, 
+            {
+                type: 'input',
+                name: 'email',
+                message: ({ name }) => (`What is ${name}'s email address?`),
+                validate: emailInput => {
+                    if (!validator.is_email_valid(emailInput)) {
+                        console.log(`Please use a valid email address.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: ({name}) => (`What is ${name}'s GitHub username?`),
+                validate: githubInput => {
+                    if (!githubInput) {
+                        console.log(`Please enter a GitHub username.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+        ]);
+    const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+    teamMembers.push(engineer);
+    addMemberOrBuildTeam();
+};
