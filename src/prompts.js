@@ -140,3 +140,62 @@ engineerPrompts = async () => {
     teamMembers.push(engineer);
     addMemberOrBuildTeam();
 };
+
+internPrompts = async () => {
+    console.log(`ADD AN INTERN`)
+
+    const answers = await inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: `What is the intern's name?`,
+                validate: nameInput => {
+                    if (!nameInput) {
+                        console.log(`Please enter a name for the intern.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: ({name}) => (`What is ${name}'s employee ID?`),
+                validate: idInput => {
+                    if (!idInput) {
+                        console.log(`Please enter a valid ID.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: ({name}) => (`What is ${name}'s email address?`),
+                validate: emailInput => {
+                    if (!validator.is_email_valid(emailInput)) {
+                        console.log(`Please enter a valid email address.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: ({name}) => (`Where does ${name} attend school?`),
+                validate: schoolInput => {
+                    if(!schoolInput) {
+                        console.log(`Please enter a school name.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+        ]);
+    const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+    teamMembers.push(intern);
+    addMemberOrBuildTeam();
+};
