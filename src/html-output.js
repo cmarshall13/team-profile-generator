@@ -1,5 +1,5 @@
 const fs = require('fs');
-const buildTeamInfo = require('.prompts');
+const buildTeamInfo = require('./prompts');
 
 buildTeam = (teamMembers) => {
     const employeeCards = [];

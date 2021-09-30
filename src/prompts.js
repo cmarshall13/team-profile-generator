@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const validator = require('node-email-validation');
+const emailValidator = require('email-validator');
 const Manager = require('../lib/Manager');
 const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
@@ -44,7 +44,7 @@ init = async () => {
                 name: 'email',
                 message: ({name}) => (`What is ${name}'s email address?'`),
                 validate: emailInput => {
-                    if (!validator.is_email_valid(emailInput)) {
+                    if (!emailValidator.validate(emailInput)) {
                         console.log(`Please enter a valid email address! `);
                         return false;
                     }
@@ -113,10 +113,22 @@ engineerPrompts = async () => {
             }, 
             {
                 type: 'input',
+                name: 'id',
+                message: ({name}) => (`What is ${name}'s employee ID?`),
+                validate: idInput => {
+                    if (!idInput) {
+                        console.log(`Please enter a valid ID.`);
+                        return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                type: 'input',
                 name: 'email',
                 message: ({ name }) => (`What is ${name}'s email address?`),
                 validate: emailInput => {
-                    if (!validator.is_email_valid(emailInput)) {
+                    if (!emailValidator.validate(emailInput)) {
                         console.log(`Please use a valid email address.`);
                         return false;
                     }
@@ -175,7 +187,7 @@ internPrompts = async () => {
                 name: 'email',
                 message: ({name}) => (`What is ${name}'s email address?`),
                 validate: emailInput => {
-                    if (!validator.is_email_valid(emailInput)) {
+                    if (!emailValidator.validate(emailInput)) {
                         console.log(`Please enter a valid email address.`);
                         return false;
                     }
