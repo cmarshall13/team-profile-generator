@@ -21,6 +21,8 @@ buildPage = employeeCards => {
             <style> 
             @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
             </style>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link rel="stylesheet" href="./css/style.css" />
             </head>
             
